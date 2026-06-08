@@ -1,0 +1,55 @@
+{
+  "private": true,
+  "name": "nebu",
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@11.5.0",
+  "engines": {
+    "node": "24.14.1"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24.14.1",
+      "onFail": "download"
+    }
+  },
+  "scripts": {
+    "lint": "eslint . --fix",
+    "format": "prettier --write .",
+    "build": "tsc",
+    "prepare": "husky",
+    "check": "tsc --noEmit",
+    "start": "node dist/index.js",
+    "release": "semantic-release"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "21.0.2",
+    "@commitlint/config-conventional": "21.0.2",
+    "@commitlint/format": "21.0.1",
+    "@commitlint/types": "21.0.1",
+    "@eslint/js": "10.0.1",
+    "@eslint/json": "2.0.0",
+    "@eslint/markdown": "8.0.2",
+    "@semantic-release/commit-analyzer": "13.0.1",
+    "@semantic-release/github": "12.0.8",
+    "@semantic-release/release-notes-generator": "14.1.1",
+    "@types/node": "25.9.2",
+    "dotenv": "17.4.2",
+    "eslint": "10.4.1",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-yml": "3.4.0",
+    "husky": "9.1.7",
+    "jiti": "2.7.0",
+    "lint-staged": "17.0.7",
+    "prettier": "3.8.3",
+    "semantic-release": "25.0.3",
+    "ts-node": "10.9.2",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.60.1"
+  },
+  "dependencies": {
+    "discord.js": "^14.26.4",
+    "winston": "^3.19.0"
+  }
+}
