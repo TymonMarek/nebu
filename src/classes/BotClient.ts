@@ -8,23 +8,23 @@ import FailedToLoadModuleError from '../errors/FailedToLoadModuleError.js';
 import path from 'node:path';
 import BotEvent from './BotEvent.js';
 import BotEventIncorrectDefaultExportTypeError from '../errors/BotEventIncorrectDefaultExportTypeError.js';
-import BotEventModuleNoDefaultExportError from '../errors/BotEventModuleNoDefaultExportError.js';
+import BotEventMissingDefaultExportError from '../errors/BotEventMissingDefaultExportError.js';
 import { pathToFileURL } from 'node:url';
 import EventDoesNotExistError from '../errors/EventDoesNotExistError.js';
 
-interface BotOptions {
+interface BotClientOptions {
   readonly logger: Logger;
   readonly secrets: BotSecretOptions;
 }
 
-export default class Bot extends Client {
+export default class BotClient extends Client {
   public readonly logger: Logger;
 
   public readonly events: Collection<string, BotEvent>;
 
   public readonly applicationId: string;
 
-  constructor(options: BotOptions) {
+  constructor(options: BotClientOptions) {
     super({ intents: [] });
 
     this.logger = options.logger;
@@ -87,7 +87,7 @@ export default class Bot extends Client {
       const event = module.default;
 
       if (event === undefined) {
-        throw new BotEventModuleNoDefaultExportError(filePath);
+        throw new BotEventMissingDefaultExportError(filePath);
       }
 
       if (!(event instanceof BotEvent)) {
